@@ -1,12 +1,10 @@
-/// <reference types="vite-plugin-svgr/client" />
-import Button from "./Components/Button";
-import { ReactComponent as Restart } from "./assets/icon-restart.svg";
-import NewGameMenu from "./Views/NewGameMenu";
+import GameView from "./Views/GameView";
 
 const App = () => {
   return (
-    <main className="w-screen h-screen overflow-hidden bg-darkNavy px-6 flex justify-center items-center">
-      <NewGameMenu isP1X={false} />
+    <main className="w-screen h-screen overflow-hidden bg-darkNavy px-6 flex justify-center items-center text-darkNavy">
+      <GameView />
+      {/* <NewGameMenu isP1X={false} /> */}
     </main>
     // <div className="bg-darkNavy w-screen h-screen flex flex-col justify-center items-center">
     //   <div className="my-4">

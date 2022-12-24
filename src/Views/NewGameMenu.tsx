@@ -14,7 +14,7 @@ const NewGameMenu = ({ isP1X }: NGMProps) => {
   return (
     <div className="flex flex-col justify-center items-center">
       <Logo className="mb-8 tablet:mb-10" />
-      <Card className="mb-8 tablet:mb-10 tablet:w-[28.75rem]">
+      <Card className="p-6 bg-semiDarkNavy flex justify-center items-center flex-col mb-8 tablet:mb-10 tablet:w-[28.75rem]">
         <div className="uppercase text-hxs text-silver mb-8">
           pick player 1's mark
         </div>

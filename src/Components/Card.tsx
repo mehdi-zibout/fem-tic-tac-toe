@@ -8,7 +8,7 @@ const Card = ({
   return (
     <div
       {...props}
-      className={`bg-semiDarkNavy rounded-[15px] p-6 shadow-[inset_0px_-8px_0px_rgba(0,0,0,0.35)] flex justify-center items-center flex-col ${className}`}
+      className={` rounded-[15px] shadow-[inset_0px_-8px_0px_rgba(0,0,0,0.35)]  ${className}`}
     >
       {children}
     </div>
