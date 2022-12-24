@@ -93,7 +93,7 @@ const GameView = ({
       {showModal !== false &&
         (showModal === "restart" ? (
           <Modal>
-            <div className="uppercase text-hl text-silver mb-7">
+            <div className="uppercase text-hm tablet:text-hl  text-silver mb-7">
               Restart Game?
             </div>
             <div className="">
@@ -154,18 +154,18 @@ const GameView = ({
                   ? "PLAYER 1 WINS!"
                   : "PLAYER 2 WINS!")}
             </div>
-            <div className="uppercase py-4 text-hl text-silver -mt-3">
+            <div className="uppercase py-4 text-hm tablet:text-hl text-silver -mt-3 relative pl-3 tablet:pl-6">
               {showModal === 0 ? (
                 "Round tied"
               ) : (
                 <>
                   {showModal === 1 ? (
-                    <Xicon className="fill-lightBlue inline -mt-5" />
+                    <Xicon className="fill-lightBlue inline tablet:-mt-5 scale-[0.43] tablet:scale-100 absolute -left-[2.7rem] top-0 tablet:static tablet:mr-2" />
                   ) : (
-                    <Oicon className="fill-lightYellow inline -mt-5" />
+                    <Oicon className="fill-lightYellow inline tablet:-mt-5 scale-[0.43] tablet:scale-100 absolute -left-[2.7rem] top-0 tablet:static tablet:mr-2" />
                   )}
                   <span
-                    className={`text-hl ${
+                    className={`text-hm tablet:text-hl  ${
                       showModal === 1 ? "text-lightBlue" : "text-lightYellow"
                     }`}
                   >
