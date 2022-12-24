@@ -11,7 +11,7 @@ const Button = ({
       {...props}
       className={`text-darkNavy ${
         cType === "primary"
-          ? "shadow-[inset_0px_-8px_0px_rgba(0,0,0,0.35)]  rounded-[15px] w-[25.625rem] text-hs pt-4 pb-6 "
+          ? "shadow-[inset_0px_-8px_0px_rgba(0,0,0,0.35)]  rounded-[15px] w-[20.43rem] tablet:w-[25.625rem] text-hs pt-4 pb-6 "
           : "shadow-[inset_0px_-4px_0px_rgba(0,0,0,0.35)]  rounded-[10px] text-hxs w-fit p-4"
       }  ${
         cColor === "yellow"
