@@ -28,7 +28,10 @@ const NewGameMenu = ({
         </div>
         <div className="bg-darkNavy p-2 rounded-[10px] flex items-center justify-center h-[4.5rem]">
           <button
-            onClick={() => setP1Mark(1)}
+            onClick={() => {
+              setP1Mark(1);
+              localStorage.setItem("p1Mark", "1");
+            }}
             className={`bg-silver rounded-[10px] w-[8.25rem] tablet:w-[12.375rem] py-3 flex justify-center items-center  h-[3.375rem] ${
               p1Mark === 1
                 ? "bg-opacity-100 fill-darkNavy"
@@ -38,7 +41,10 @@ const NewGameMenu = ({
             <Xicon className="scale-50 " />
           </button>
           <button
-            onClick={() => setP1Mark(-1)}
+            onClick={() => {
+              setP1Mark(-1);
+              localStorage.setItem("p1Mark", "-1");
+            }}
             className={`bg-silver rounded-[10px] w-[8.25rem] tablet:w-[12.375rem] py-3 flex justify-center items-center h-[3.375rem] ${
               p1Mark === -1
                 ? "bg-opacity-100 fill-darkNavy"
@@ -55,6 +61,7 @@ const NewGameMenu = ({
       <Button
         onClick={() => {
           setAgainstCPU(true);
+          localStorage.setItem("againstCPU", "true");
           setBackToMenu(false);
         }}
         cType="primary"
@@ -66,6 +73,7 @@ const NewGameMenu = ({
       <Button
         onClick={() => {
           setAgainstCPU(false);
+          localStorage.setItem("againstCPU", "false");
           setBackToMenu(false);
         }}
         cType="primary"

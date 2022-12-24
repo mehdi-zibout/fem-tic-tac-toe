@@ -1,5 +1,5 @@
 /// <reference types="vite-plugin-svgr/client" />
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { ReactComponent as Xicon } from "../assets/icon-x.svg";
@@ -12,15 +12,31 @@ import Card from "../Components/Card";
 import Modal from "../Components/Modal";
 
 type GameViewProps = {
+  oldGame?: (0 | 1 | -1)[][];
+  oldScore?: {
+    p1: number;
+    p2: number;
+    ties: number;
+  };
   againstCPU: boolean;
   p1Mark: 1 | -1;
   setBackToMenu: Dispatch<SetStateAction<boolean>>;
 };
 
-const GameView = ({ againstCPU, p1Mark, setBackToMenu }: GameViewProps) => {
-  const [score, setScore] = useState({ p1: 0, p2: 0, ties: 0 });
+const GameView = ({
+  oldGame,
+  oldScore,
+  againstCPU,
+  p1Mark,
+  setBackToMenu,
+}: GameViewProps) => {
+  const [score, setScore] = useState(
+    oldScore ? oldScore : { p1: 0, p2: 0, ties: 0 }
+  );
   const [game, setGame] = useState<(0 | -1 | 1)[][]>(
-    againstCPU
+    oldGame
+      ? oldGame
+      : againstCPU
       ? p1Mark === -1
         ? getRandomStartPosition()
         : [
@@ -38,6 +54,9 @@ const GameView = ({ againstCPU, p1Mark, setBackToMenu }: GameViewProps) => {
   const [showModal, setShowModal] = useState<false | -1 | 0 | 1 | "restart">(
     false
   );
+  localStorage.setItem("gameState", JSON.stringify(game));
+  localStorage.setItem("score", JSON.stringify(score));
+  localStorage.setItem("turn", JSON.stringify(turn));
 
   const handleClick = (i: 0 | 1 | -1, j: 0 | 1 | -1) => {
     const newGame = game;
@@ -158,6 +177,12 @@ const GameView = ({ againstCPU, p1Mark, setBackToMenu }: GameViewProps) => {
             <div className="">
               <Button
                 onClick={() => {
+                  localStorage.removeItem("gameState");
+                  localStorage.removeItem("score");
+                  localStorage.removeItem("againstCPU");
+                  localStorage.removeItem("turn");
+                  localStorage.removeItem("p1Mark");
+
                   setBackToMenu(true);
                 }}
                 cType="secondary"
