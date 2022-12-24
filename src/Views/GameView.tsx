@@ -73,7 +73,56 @@ const GameView = ({ againstCPU, p1Mark, setBackToMenu }: GameViewProps) => {
     <div className="flex flex-col justify-between tablet:justify-center items-center tablet:w-[28.75rem] w-[20.5rem] h-[32.25rem] tablet:h-[38.94rem]">
       {showModal !== false &&
         (showModal === "restart" ? (
-          <Modal>restart</Modal>
+          <Modal>
+            <div className="uppercase text-hl text-silver mb-7">
+              Restart Game?
+            </div>
+            <div className="">
+              <Button
+                onClick={() => {
+                  setShowModal(false);
+                }}
+                cType="secondary"
+                cColor="blue"
+                className="uppercase mr-4 text-hxs"
+              >
+                no, cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  const newGame = [
+                    [0, 0, 0],
+                    [0, 0, 0],
+                    [0, 0, 0],
+                  ];
+                  setGame(newGame as (-1 | 0 | 1)[][]);
+                  const whoseTurnIsIt =
+                    (score.p1 + score.p2 + score.ties) % 2 === 0;
+                  setTurn(whoseTurnIsIt);
+                  if (p1Mark === 1 && !whoseTurnIsIt && againstCPU) {
+                    newGame[Math.floor(Math.random() * 3)][
+                      Math.floor(Math.random() * 3)
+                    ] = -1 * p1Mark;
+                    setGame(newGame as (-1 | 0 | 1)[][]);
+                    setTurn(!whoseTurnIsIt);
+                  }
+                  if (p1Mark === -1 && whoseTurnIsIt && againstCPU) {
+                    newGame[Math.floor(Math.random() * 3)][
+                      Math.floor(Math.random() * 3)
+                    ] = -1 * p1Mark;
+                    setGame(newGame as (-1 | 0 | 1)[][]);
+                    setTurn(!whoseTurnIsIt);
+                  }
+                  setShowModal(false);
+                }}
+                cType="secondary"
+                cColor="yellow"
+                className="uppercase  text-hxs"
+              >
+                yes, restart{" "}
+              </Button>
+            </div>
+          </Modal>
         ) : (
           <Modal>
             <div className="uppercase text-hxs text-silver">
@@ -86,7 +135,7 @@ const GameView = ({ againstCPU, p1Mark, setBackToMenu }: GameViewProps) => {
                   ? "PLAYER 1 WINS!"
                   : "PLAYER 2 WINS!")}
             </div>
-            <div className="uppercase py-4">
+            <div className="uppercase py-4 text-hl text-silver -mt-3">
               {showModal === 0 ? (
                 "Round tied"
               ) : (
